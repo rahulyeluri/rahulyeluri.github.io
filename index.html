@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kytchase — Mobile Developer</title>
+  <style>
+    :root {
+      --bg: #121212;
+      --card-bg: #1e1e1e;
+      --text: #e0e0e0;
+      --text-muted: #a0a0a0;
+      --accent: #bb86fc;
+      --accent-strong: #28ff8f;
+      --border: #2a2a2a;
+      --tag-bg: #2d2d2d;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(40, 255, 143, 0.08), transparent 34rem),
+        linear-gradient(180deg, #171717 0%, var(--bg) 38%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Header & Hero */
+    header {
+      margin-bottom: 3rem;
+      border-bottom: 1px solid #333;
+      padding-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 4.6rem);
+      line-height: 1;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    p.intro {
+      max-width: 680px;
+      font-size: 1.12rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .social-links a {
+      border: 1px solid rgba(187, 134, 252, 0.45);
+      border-radius: 999px;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.4rem;
+      padding: 0.45rem 0.9rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .social-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Section Headings */
+    h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 0.45rem;
+    }
+
+    .section-copy {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+    }
+
+    .card[data-play-link] {
+      cursor: pointer;
+    }
+
+    .card[data-play-link]:focus-visible {
+      border-color: var(--accent);
+      outline: 3px solid rgba(187, 134, 252, 0.32);
+      outline-offset: 3px;
+    }
+
+    .app-preview {
+      aspect-ratio: 16 / 10;
+      background: #161616;
+      display: block;
+      min-height: 150px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    .app-preview img {
+      display: block;
+      height: 100%;
+      inset: 0;
+      object-fit: cover;
+      position: absolute;
+      width: 100%;
+    }
+
+    .card-body {
+      padding: 1.25rem;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      background-color: var(--tag-bg);
+      color: var(--accent-strong);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .card-links a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .card-links a:hover {
+      color: var(--accent);
+    }
+
+    .coming-soon {
+      color: var(--accent-strong);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    @media (max-width: 520px) {
+      body {
+        padding: 1.25rem 0.9rem;
+      }
+
+      header {
+        margin-bottom: 2.2rem;
+      }
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 4rem;
+      border-top: 1px solid #333;
+      padding-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Hero / Profile Header -->
+    <header>
+      <h1>Hello, I'm Kytchase</h1>
+      <p class="intro">Independent mobile game & app developer creating clean, offline arcade and puzzle experiences.</p>
+      <div class="social-links">
+        <a href="https://play.google.com/store/apps/developer?id=KytChase" target="_blank" rel="noopener">Google Play</a>
+        <a href="https://sites.google.com/view/kytchase" target="_blank" rel="noopener">Blog</a>
+        <a href="mailto:kytchase@gmail.com">Contact</a>
+      </div>
+    </header>
+
+    <!-- Projects Section -->
+    <main>
+      <h2>Featured Games & Apps</h2>
+      <p class="section-copy">The collection of Apps &amp; Games from Kytchase Studio:</p>
+      <div class="projects-grid">
+        
+        <!-- App 1: Mini Games -->
+        <div class="card" data-play-link="https://play.google.com/store/apps/details?id=com.kytchase.engames" tabindex="0" role="link" aria-label="Open Mini Games on Google Play">
+          <div class="app-preview">
+            <img src="img/minigames.png" alt="Mini Games app preview" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <h3>Mini Games</h3>
+            <p>A quick-play collection of casual mini games built for simple, lightweight fun.</p>
+            <div class="tags">
+              <span class="tag">Android</span>
+              <span class="tag">Mini Games</span>
+              <span class="tag">Casual</span>
+            </div>
+            <div class="card-links">
+              <a href="https://play.google.com/store/apps/details?id=com.kytchase.engames" target="_blank" rel="noopener">Google Play</a>
+              <a href="https://sites.google.com/view/kytchase/mini-games" target="_blank" rel="noopener">Privacy Policy</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- App 2: Mazing -->
+        <div class="card" data-play-link="https://play.google.com/store/apps/details?id=com.kytchase.mazing" tabindex="0" role="link" aria-label="Open Mazing on Google Play">
+          <div class="app-preview">
+            <img src="img/mazing.png" alt="Mazing app preview" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <h3>Mazing</h3>
+            <p>A clean 2D maze puzzle game with focused levels and a retro arcade feel.</p>
+            <div class="tags">
+              <span class="tag">Android</span>
+              <span class="tag">Puzzle</span>
+              <span class="tag">Maze</span>
+            </div>
+            <div class="card-links">
+              <a href="https://play.google.com/store/apps/details?id=com.kytchase.mazing" target="_blank" rel="noopener">Google Play</a>
+              <a href="https://sites.google.com/view/kytchase/mazing" target="_blank" rel="noopener">Privacy Policy</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- App 3: Quest -->
+        <div class="card">
+          <div class="app-preview">
+            <img src="img/quest.png" alt="Quest app preview" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <h3>Quest</h3>
+            <p>An upcoming Kytchase game currently listed as coming soon.</p>
+            <div class="tags">
+              <span class="tag">Android</span>
+              <span class="tag">Adventure</span>
+              <span class="tag">Upcoming</span>
+            </div>
+            <span class="coming-soon">Coming Soon</span>
+          </div>
+        </div>
+
+        <!-- App 4: Drive -->
+        <div class="card">
+          <div class="app-preview">
+            <img src="img/drive.png" alt="Drive app preview" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <h3>Drive</h3>
+            <p>An upcoming driving game from Kytchase, currently marked as coming soon.</p>
+            <div class="tags">
+              <span class="tag">Android</span>
+              <span class="tag">Driving</span>
+              <span class="tag">Upcoming</span>
+            </div>
+            <span class="coming-soon">Coming Soon</span>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 Kytchase · <a href="app-ads.txt" style="color: var(--text-muted);">app-ads.txt</a></p>
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll("[data-play-link]").forEach((card) => {
+      const openPlayLink = () => window.open(card.dataset.playLink, "_blank", "noopener");
+
+      card.addEventListener("click", (event) => {
+        if (!event.target.closest("a")) openPlayLink();
+      });
+
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openPlayLink();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
